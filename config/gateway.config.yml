@@ -1,0 +1,20 @@
+http:
+  port: 8080
+apiEndpoints:
+  ms_security:
+    host: localhost
+    paths: ['/hola-mundo','/hola-mundo/*']   
+serviceEndpoints:
+  ms_security:
+    url: 'https://node-demo-das-fa50fe2c573a.herokuapp.com/'
+policies:
+  - proxy
+pipelines:
+  securityPipeLine:
+    apiEndpoints:
+      - ms_security
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: ms_security
+              changeOrigin: true
